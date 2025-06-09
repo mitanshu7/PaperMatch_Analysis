@@ -14,3 +14,5 @@ Analysis to perform:
 
 9. Dimentionality reduction - mrl - float
 10. Dimentionality reduction - mrl - binary
+
+11. Tokenization limit of model
