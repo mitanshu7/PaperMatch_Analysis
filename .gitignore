@@ -9,6 +9,7 @@ wheels/
 # Virtual environments
 .venv
 
-*.parquet
-
 tmp.ipynb
+
+bluuebunny/arxiv_abstract_embedding_mxbai_large_v1_milvus/data/*
+bluuebunny/arxiv_abstract_embedding_mxbai_large_v1_milvus_binary/data/*
