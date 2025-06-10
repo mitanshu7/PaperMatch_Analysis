@@ -57,6 +57,8 @@ parquets.sort()
 print(f'Found {len(parquets)} parquet files. Merging them...')
 df = pd.concat([pd.read_parquet(parquet) for parquet in parquets], ignore_index=True)
 
+print(f'Merged {len(df)} rows from {len(parquets)} files.')
+
 # Reducing columns to save memory
 df = df[['id', 'categories', 'year', 'vector']]
 
