@@ -4,6 +4,7 @@ from glob import glob
 import os
 from time import time
 import numpy as np
+from tqdm import tqdm
 
 # Configuration
 FLOAT = True
@@ -39,24 +40,27 @@ def unpack_binary(vector):
 
 if FLOAT:
 
+    print('Processing float vectors with Euclidean distance...')
+
+    # Start the timer
     start = time()
 
     # Float32
     repo_id = "bluuebunny/arxiv_abstract_embedding_mxbai_large_v1_milvus"
 
     # Folder to store umap results in
-    results_folder = repo_id + '/' + 'umap'
+    results_folder = repo_id + '/umap/euclidean'
     os.makedirs(results_folder, exist_ok=True)
 
     # Initiate the reducer
-    reducer = umap.UMAP()
+    reducer = umap.UMAP(metric='euclidean')
 
     # Gather all parquet files in the data folder
     parquets = glob(f'{repo_id}/data/*.parquet', recursive=True)
     parquets.sort()
 
     # Filter out the yearly files
-    for parquet in parquets:
+    for parquet in tqdm(parquets):
 
         print(f'Processing {parquet}')
 
@@ -87,24 +91,27 @@ if FLOAT:
 
 if BINARY:
 
+    print('Processing binary vectors with Hamming distance...')
+
+    # Start the timer
     start = time()
 
     # Binary
     repo_id = "bluuebunny/arxiv_abstract_embedding_mxbai_large_v1_milvus_binary"
 
     # Folder to store umap results in
-    results_folder = repo_id + '/' + 'umap'
+    results_folder = repo_id + '/umap/hamming'
     os.makedirs(results_folder, exist_ok=True)
 
     # Initiate the reducer
-    reducer = umap.UMAP()
+    reducer = umap.UMAP(metric='hamming')
 
     # Gather all parquet files in the data folder
     parquets = glob(f'{repo_id}/data/*.parquet', recursive=True)
     parquets.sort()
 
     # Filter out the yearly files
-    for parquet in parquets:
+    for parquet in tqdm(parquets):
 
         print(f'Processing {parquet}')
 
