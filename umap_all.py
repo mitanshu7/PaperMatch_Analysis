@@ -60,7 +60,7 @@ df = pd.concat([pd.read_parquet(parquet) for parquet in parquets], ignore_index=
 print(f'Merged {len(df)} rows from {len(parquets)} files.')
 
 # Reducing columns to save memory
-df = df[['id', 'categories', 'year', 'vector']]
+df = df[['id', 'categories', 'year', 'vector', 'title']]
 
 # Process categories
 print('Processing categories...')
@@ -80,7 +80,7 @@ df['y'] = reduced_data[:, 1]
 df['z'] = reduced_data[:, 2]
 
 # Selecting id, categories, year, and the reduced dimensions
-selected_columns = ['id', 'categories', 'year', 'x', 'y', 'z']
+selected_columns = ['id', 'categories', 'year', 'x', 'y', 'z', 'title']
 
 # Save the data
 print('Saving the data...')
